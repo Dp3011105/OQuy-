@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ổ QUỶ | View</title>
+    <link rel="icon" type="image/png" href="image2-fotor-20250813113121.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#0f0f0f',
+                            700: '#151515',
+                        },
+                        blood: {
+                            500: '#e50914',
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #d1d1d1;
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #151515;
+            border-radius: 0.5rem;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .episode-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .episode-btn {
+            background: #151515;
+            color: #d1d1d1;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e50914;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .episode-btn:hover {
+            background: #e50914;
+            color: #fff;
+        }
+
+        .episode-btn.active {
+            background: #e50914;
+            color: #fff;
+        }
+
+        .boloc-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .boloc-btn {
+            background: #151515;
+            color: #d1d1d1;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .boloc-btn:hover {
+            background: #e50914;
+            color: #fff;
+            border-color: #e50914;
+        }
+
+        .video-card {
+            background: #151515;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .video-card:hover {
+            background: #1b1b1b;
+        }
+
+        @media (max-width: 640px) {
+            .video-container {
+                padding-bottom: 75%;
+            }
+
+            .video-card img {
+                height: 120px;
+            }
+
+            .episode-btn, .boloc-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-200">
+    <div class="container mx-auto px-4 py-4">
+        <header class="mb-4">
+            <a class='text-3xl font-bold text-blood-500' href='/'>Ổ QUỶ</a>
+        </header>
+
+        <div id="main-video-section" class="w-full mt-4">
+            <div class="video-container">
+                <div id="video-player"></div>
+            </div>
+            <h2 id="main-video-title" class="text-xl font-semibold text-white mt-2"></h2>
+            <div id="boloc-list" class="boloc-list hidden"></div>
+            <div id="episode-list" class="episode-list hidden"></div>
+        </div>
+
+        <div id="recommended-videos" class="mt-4">
+            <h2 class="text-xl font-bold text-blood-500 mb-2">Phim cùng thể loại</h2>
+            <div id="recommended-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"></div>
+        </div>
+    </div>
+
+    <script>
+        let videos = [];
+        let currentVideoData = null;
+        let hls = null;
+
+        function cleanVideoUrl(url) {
+            if (!url) return '';
+            try {
+                const urlObj = new URL(url);
+                const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'fbclid', 'gclid'];
+                trackingParams.forEach(param => urlObj.searchParams.delete(param));
+                return urlObj.toString();
+            } catch (e) {
+                console.error('Lỗi làm sạch URL:', e);
+                return url;
+            }
+        }
+
+        function getRandomVideosByBoloc(boloc, count, excludeVideoId) {
+            if (!boloc || boloc.length === 0) {
+                return getRandomVideos(videos, count, excludeVideoId);
+            }
+            const filtered = videos.filter(v => {
+                if (v.tap[0]?.video === excludeVideoId) return false;
+                if (!v.boloc || v.boloc.length === 0) return false;
+                return v.boloc.some(tag => boloc.includes(tag));
+            });
+            const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, Math.min(count, shuffled.length));
+        }
+
+        function getRandomVideos(videos, count, excludeVideoId) {
+            const filtered = videos.filter(v => v.tap[0]?.video !== excludeVideoId);
+            const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, Math.min(count, filtered.length));
+        }
+
+        function getVideoTitle(video) {
+            return video.TieuDe && video.TieuDe.trim() !== '' ? video.TieuDe : "Video không có tiêu đề";
+        }
+
+        function displayRecommendedVideos(boloc, excludeVideoId) {
+            const recommendedList = document.getElementById("recommended-list");
+            recommendedList.innerHTML = "";
+
+            const recommendedVideos = getRandomVideosByBoloc(boloc, 40, excludeVideoId);
+
+            recommendedVideos.forEach((vid) => {
+                const videoCard = document.createElement("div");
+                videoCard.className = "video-card";
+                const title = getVideoTitle(vid);
+                const thumbnail = vid.anh || 'img/placeholder.jpg';
+                const videoId = vid.tap[0]?.video || '';
+
+                videoCard.innerHTML = `
+                    <img src="${thumbnail}" alt="${title}">
+                    <div class="p-2">
+                        <h3 class="text-sm font-medium text-white line-clamp-2">${title}</h3>
+                    </div>
+                `;
+
+                videoCard.addEventListener("click", () => {
+                    window.location.href = `watch.html?id=${encodeURIComponent(videoId)}&title=${encodeURIComponent(title)}`;
+                });
+
+                recommendedList.appendChild(videoCard);
+            });
+        }
+
+        function displayBolocButtons(boloc) {
+            const bolocList = document.getElementById("boloc-list");
+            bolocList.innerHTML = '';
+            bolocList.classList.toggle('hidden', !boloc || boloc.length === 0);
+
+            if (boloc && boloc.length > 0) {
+                boloc.forEach(tag => {
+                    const btn = document.createElement('button');
+                    btn.className = 'boloc-btn';
+                    btn.textContent = tag;
+                    btn.addEventListener('click', () => {
+                        window.location.href = `index.html?filter=${encodeURIComponent(tag)}`;
+                    });
+                    bolocList.appendChild(btn);
+                });
+            }
+        }
+
+        function playVideo(videoData, title, seriesId, episodeIndex = 0) {
+            const episodeData = videoData.tap && videoData.tap[episodeIndex] ? videoData.tap[episodeIndex] : videoData.tap[0];
+            const cleanUrl = cleanVideoUrl(episodeData.video);
+            const videoId = cleanUrl;
+            const videoContainer = document.getElementById("video-player");
+            videoContainer.innerHTML = '';
+
+            try {
+                new URL(cleanUrl);
+            } catch (e) {
+                console.error('URL video không hợp lệ:', cleanUrl);
+                return;
+            }
+
+            currentVideoData = {
+                videoId,
+                url: cleanUrl,
+                episodes: videoData.tap,
+                episodeIndex,
+                format: videoData.Dang,
+                seriesId,
+            };
+
+            const video = document.createElement('video');
+            video.id = 'main-video';
+            video.controls = true;
+            video.autoplay = true;
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.setAttribute('playsinline', '');
+            videoContainer.appendChild(video);
+
+            if (Hls.isSupported() && currentVideoData.format === '.m3u8') {
+                if (hls) hls.destroy();
+                hls = new Hls({
+                    lowLatencyMode: true,
+                    maxBufferLength: 15,
+                    maxMaxBufferLength: 30,
+                    startLevel: -1,
+                    autoStartLoad: true,
+                    abrEwmaFastLive: 3.0,
+                    abrEwmaSlowLive: 9.0,
+                    abrEwmaDefaultEstimate: 500000,
+                    abrBandWidthFactor: 0.95,
+                    abrBandWidthUpFactor: 0.7,
+                });
+                hls.loadSource(cleanUrl);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.ERROR, (event, data) => {
+                    console.error('HLS Error:', data);
+                    if (data.fatal) {
+                        hls.destroy();
+                        video.src = cleanUrl;
+                    }
+                });
+                hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    video.play().catch(e => console.error('Lỗi phát video:', e));
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl') && currentVideoData.format === '.m3u8') {
+                video.src = cleanUrl;
+                video.addEventListener('loadedmetadata', () => {
+                    video.play().catch(e => console.error('Lỗi phát video:', e));
+                });
+            } else {
+                video.src = cleanUrl;
+                video.play().catch(e => console.error('Lỗi phát video:', e));
+            }
+
+            document.getElementById("main-video-title").textContent = title;
+            displayBolocButtons(videoData.boloc);
+            const episodeList = document.getElementById("episode-list");
+            episodeList.classList.toggle('hidden', !videoData.tap || videoData.tap.length <= 1);
+            episodeList.innerHTML = '';
+            if (videoData.tap && videoData.tap.length > 1) {
+                videoData.tap.forEach((ep, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = `episode-btn ${idx === episodeIndex ? 'active' : ''}`;
+                    btn.textContent = ep.tapSo ? `TẬP ${ep.tapSo}` : `PHẦN ${idx + 1}`;
+                    btn.addEventListener('click', () => {
+                        playVideo(videoData, title, seriesId, idx);
+                    });
+                    episodeList.appendChild(btn);
+                });
+            }
+
+            displayRecommendedVideos(videoData.boloc || [], seriesId);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('id');
+            const title = urlParams.get('title');
+
+            if (!videoId || !title) {
+                document.getElementById("main-video-title").textContent = "Không tìm thấy video";
+                return;
+            }
+
+            fetch("phim.json")
+                .then(response => {
+                    if (!response.ok) throw new Error('Không thể tải file phim.json');
+                    return response.json();
+                })
+                .then(data => {
+                    videos = data.filter(v => v.tap && v.tap[0]?.video && v.Dang === '.m3u8');
+                    const videoData = videos.find(v => v.tap.some(ep => cleanVideoUrl(ep.video) === cleanVideoUrl(videoId)));
+                    if (videoData) {
+                        const episodeIndex = videoData.tap.findIndex(ep => cleanVideoUrl(ep.video) === cleanVideoUrl(videoId));
+                        playVideo(videoData, decodeURIComponent(title), videoId, episodeIndex);
+                    } else {
+                        document.getElementById("main-video-title").textContent = "Không tìm thấy video phù hợp";
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi tải danh sách video:", error);
+                    document.getElementById("main-video-title").textContent = "Lỗi tải video. Vui lòng thử lại sau.";
+                });
+        });
+    </script>
+</body>
+</html>
