@@ -439,13 +439,13 @@
             const videoCard = document.createElement("div");
             videoCard.className = "video-card";
             const title = getVideoTitle(vid);
-            const thumbnail = vid.anh || 'img/placeholder.jpg';
+            const thumbnail = vid.anh || 'image2-fotor-20250813113121.png';
             const categories = Array.isArray(vid.boloc) ? vid.boloc.join(", ") : 'Không có thể loại';
             const videoId = vid.tap?.[0]?.video || '';
 
             videoCard.innerHTML = `
                 <div class="overflow-hidden">
-                    <img src="${thumbnail}" alt="${title}" class="w-full object-cover" onerror="this.src='img/placeholder.jpg'">
+                    <img src="${thumbnail}" alt="${title}" class="w-full object-cover" onerror="this.src='image2-fotor-20250813113121.png'">
                 </div>
                 <div class="p-3">
                     <h3 class="text-sm font-medium text-white line-clamp-2">${title}</h3>
