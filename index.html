@@ -288,6 +288,92 @@
             display: none;
         }
 
+        /* === THÔNG BÁO TRƯỢT TỪ PHẢI QUA TRÁI === */
+        .alert-toast {
+            position: fixed;
+            right: -100%;
+            top: 1rem;
+            z-index: 1000;
+            max-width: 90%;
+            width: 420px;
+            background-color: #1a1a1a;
+            border: 1px solid #e50914;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+            transition: right 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: #fff;
+        }
+
+        .alert-toast.show {
+            right: 1rem;
+        }
+
+        .alert-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: #e50914;
+        }
+
+        .alert-content {
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .alert-close {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .alert-close:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Responsive cho mobile */
+        @media (max-width: 640px) {
+            .alert-toast {
+                width: calc(100% - 2rem);
+                max-width: none;
+                left: 1rem;
+                right: 1rem;
+                top: 1rem;
+                font-size: 0.8rem;
+                padding: 0.75rem;
+            }
+
+            .alert-toast.show {
+                right: 1rem;
+            }
+        }
+
+        /* 2 thông báo cách nhau */
+        .alert-toast:nth-child(2) {
+            top: 7.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .alert-toast:nth-child(2) {
+                top: 7rem;
+            }
+        }
+
         @media (max-width: 640px) {
             .filter-container {
                 justify-content: flex-start;
@@ -379,6 +465,34 @@
     </style>
 </head>
 <body class="font-sans bg-dark-900 text-gray-200">
+    <!-- THÔNG BÁO 1 -->
+    <div id="alert-1" class="alert-toast">
+        <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <div class="alert-content">
+            Hiện Trang web đang bị tấn công nên 80% phim trên web còn hoạt động, nếu không xem được, hãy lấy code của phim để xem ở trang web khác
+        </div>
+        <button class="alert-close" onclick="closeAlert('alert-1')">&times;</button>
+    </div>
+
+    <!-- THÔNG BÁO 2 -->
+    <div id="alert-2" class="alert-toast">
+        <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <div class="alert-content">
+            Hiện Phim Hoạt Hình đã bị lỗi toàn bộ, xin lỗi vì sự cố không mong muốn này.
+            <br/>
+            Chúng tôi sẽ cập nhật ít phim hơn vì đang bị tấn công DDOS, mong các bạn thông cảm.
+        </div>
+        <button class="alert-close" onclick="closeAlert('alert-2')">&times;</button>
+    </div>
+
+
+     
+
+
     <div class="container mx-auto px-4 py-4">
         <header class="mb-4">
             <a class='text-3xl font-bold text-white' href='/'>Qủy</a>
@@ -395,7 +509,6 @@
                         <button class="close-dropdown-btn">Đóng</button>
                     </div>
                 </div>
-                <a class='filter-btn text-white' href='/shorts' style='background-color: #2a2a2a;'>Shorts</a>
                 <a href="https://discord.gg/uqNA78fs9G" target="_blank" class="filter-btn bg-purple-600 hover:bg-purple-700 text-white">Discord</a>
             </div>
         </div>
@@ -408,6 +521,27 @@
     </div>
 
     <script>
+        // Hiển thị thông báo khi tải trang
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('alert-1').classList.add('show');
+            }, 500);
+
+            setTimeout(() => {
+                document.getElementById('alert-2').classList.add('show');
+            }, 1000);
+        });
+
+        // Hàm đóng thông báo
+        function closeAlert(id) {
+            const alert = document.getElementById(id);
+            alert.classList.remove('show');
+            alert.style.right = '-100%';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 600);
+        }
+
         let videos = [];
         const videosPerPage = 20;
         let currentPage = 1;
