@@ -32,7 +32,6 @@
             margin: 0;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
-
         .video-card {
             background-color: #1a1a1a;
             border-radius: 0.5rem;
@@ -40,20 +39,17 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease-in-out;
         }
-
         .video-card:hover {
             transform: scale(1.05);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6);
             background-color: #222222;
         }
-
         .video-card img {
             width: 100%;
             aspect-ratio: 16 / 9;
             object-fit: cover;
             display: block;
         }
-
         .filter-container {
             position: sticky;
             top: 0;
@@ -66,13 +62,11 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .filter-dropdown {
             position: relative;
             display: inline-flex;
             align-items: center;
         }
-
         .filter-dropdown-content {
             display: none;
             position: absolute;
@@ -88,15 +82,12 @@
             left: 0;
             scrollbar-width: none;
         }
-
         .filter-dropdown-content::-webkit-scrollbar {
             display: none;
         }
-
         .filter-dropdown-content.show {
             display: block;
         }
-
         .filter-chip {
             background-color: #2a2a2a;
             color: #e5e5e5;
@@ -114,30 +105,25 @@
             width: 100%;
             justify-content: space-between;
         }
-
         .filter-chip:hover {
             background: linear-gradient(to right, rgba(229, 9, 20, 0.1), rgba(229, 9, 20, 0.2));
             border-color: #e50914;
             transform: scale(1.02);
         }
-
         .filter-chip.active {
             background-color: #e50914;
             color: #fff;
             border-color: #e50914;
         }
-
         .filter-chip-icon {
             width: 12px;
             height: 12px;
             opacity: 0;
             transition: opacity 0.2s ease;
         }
-
         .filter-chip.active .filter-chip-icon {
             opacity: 1;
         }
-
         .filter-btn {
             background-color: #2a2a2a;
             color: #e5e5e5;
@@ -149,13 +135,11 @@
             white-space: nowrap;
             transition: all 0.2s ease;
         }
-
         .filter-btn:hover {
             color: #fff;
             background: rgba(229, 9, 20, 0.2);
             border-color: #e50914;
         }
-
         .search-input {
             background-color: transparent;
             color: #e5e5e5;
@@ -167,31 +151,26 @@
             font-size: 0.875rem;
             transition: all 0.2s ease;
         }
-
         .search-input:focus {
             outline: none;
             border-color: #e50914;
             box-shadow: 0 0 5px rgba(229, 9, 20, 0.5);
         }
-
         .category-section {
             margin-bottom: 2rem;
         }
-
         .category-section h2 {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
             color: #fff;
         }
-
         .category-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
         }
-
         .view-all-btn {
             background-color: #2a2a2a;
             color: #e5e5e5;
@@ -201,11 +180,9 @@
             transition: all 0.2s ease;
             white-space: nowrap;
         }
-
         .view-all-btn:hover {
             background-color: #333;
         }
-
         .category-grid {
             display: flex;
             overflow-x: auto;
@@ -215,30 +192,25 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
-
         .category-grid::-webkit-scrollbar {
             display: none;
         }
-
         .category-grid .video-card {
             flex: 0 0 200px;
             scroll-snap-align: start;
         }
-
         #video-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1rem;
             min-height: 200px;
         }
-
         .pagination {
             display: flex;
             justify-content: center;
             gap: 0.5rem;
             margin: 2rem 0;
         }
-
         .pagination-btn {
             padding: 0.5rem 1rem;
             background-color: #2a2a2a;
@@ -247,21 +219,17 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-
         .pagination-btn:hover {
             background-color: #333;
         }
-
         .pagination-btn.active {
             background-color: #e50914;
             color: white;
         }
-
         .pagination-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
-
         .filter-search {
             background-color: #2a2a2a;
             color: #e5e5e5;
@@ -271,12 +239,10 @@
             width: 100%;
             margin-bottom: 0.75rem;
         }
-
         .filter-search:focus {
             outline: none;
             border-color: #e50914;
         }
-
         .close-dropdown-btn {
             background-color: #e50914;
             color: #fff;
@@ -287,7 +253,6 @@
             margin-top: 0.5rem;
             display: none;
         }
-
         /* === THÔNG BÁO TRƯỢT TỪ PHẢI QUA TRÁI === */
         .alert-toast {
             position: fixed;
@@ -308,23 +273,19 @@
             font-size: 0.875rem;
             color: #fff;
         }
-
         .alert-toast.show {
             right: 1rem;
         }
-
         .alert-icon {
             flex-shrink: 0;
             width: 20px;
             height: 20px;
             color: #e50914;
         }
-
         .alert-content {
             flex: 1;
             line-height: 1.5;
         }
-
         .alert-close {
             background: none;
             border: none;
@@ -340,12 +301,189 @@
             border-radius: 50%;
             transition: all 0.2s ease;
         }
-
         .alert-close:hover {
             background-color: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
-
+        /* === BANNER PHIM NỔI BẬT === */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 400px;
+            max-height: 800px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0;
+        }
+        .banner-slide.active {
+            opacity: 1;
+        }
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0.4) 50%, rgba(10, 10, 10, 0.1) 100%);
+            z-index: -1;
+        }
+        .banner-content {
+            max-width: 600px;
+            padding: 2rem;
+            margin-left: 2rem;
+            z-index: 1;
+        }
+        .banner-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .banner-description {
+            font-size: 1.1rem;
+            color: #e5e5e5;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            max-height: 4.5em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .banner-button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .banner-button:hover {
+            background-color: #f40612;
+            transform: scale(1.05);
+        }
+        .banner-indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+        .banner-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .banner-indicator.active {
+            background-color: #e50914;
+            transform: scale(1.2);
+        }
+        .banner-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            z-index: 2;
+        }
+        .banner-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .banner-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        /* Responsive cho banner */
+        @media (max-width: 768px) {
+            .banner-container {
+                height: 50vh;
+                min-height: 300px;
+            }
+            .banner-title {
+                font-size: 1.8rem;
+            }
+            .banner-description {
+                font-size: 1rem;
+                -webkit-line-clamp: 2;
+                max-height: 3em;
+            }
+            .banner-content {
+                margin-left: 1rem;
+                padding: 1rem;
+            }
+            .banner-button {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .banner-controls {
+                display: none;
+            }
+        }
+        @media (max-width: 480px) {
+            .banner-container {
+                height: 40vh;
+                min-height: 250px;
+            }
+            .banner-title {
+                font-size: 1.5rem;
+            }
+            .banner-description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            .banner-button {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
         /* Responsive cho mobile */
         @media (max-width: 640px) {
             .alert-toast {
@@ -357,23 +495,19 @@
                 font-size: 0.8rem;
                 padding: 0.75rem;
             }
-
             .alert-toast.show {
                 right: 1rem;
             }
         }
-
         /* 2 thông báo cách nhau */
         .alert-toast:nth-child(2) {
             top: 7.5rem;
         }
-
         @media (max-width: 640px) {
             .alert-toast:nth-child(2) {
                 top: 7rem;
             }
         }
-
         @media (max-width: 640px) {
             .filter-container {
                 justify-content: flex-start;
@@ -382,7 +516,6 @@
                 overflow-x: auto;
                 flex-wrap: nowrap;
             }
-
             .filter-dropdown-content {
                 width: 100%;
                 max-height: 80vh;
@@ -394,69 +527,55 @@
                 position: fixed;
                 background-color: #121212;
             }
-
             .filter-chip {
                 padding: 0.4rem 0.8rem;
                 font-size: 0.75rem;
             }
-
             .filter-chip-icon {
                 width: 10px;
                 height: 10px;
             }
-
             .filter-btn {
                 padding: 0.4rem 0.8rem;
                 font-size: 0.75rem;
                 border-radius: 0.25rem;
             }
-
             .search-input {
                 max-width: 200px;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.75rem;
             }
-
             .video-card img {
                 aspect-ratio: 16 / 9;
             }
-
             #video-list {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 0.75rem;
             }
-
             .category-grid .video-card {
                 flex: 0 0 150px;
             }
-
             .category-section h2 {
                 font-size: 1.25rem;
             }
-
             .close-dropdown-btn {
                 display: block;
             }
         }
-
         @media (min-width: 641px) and (max-width: 1024px) {
             #video-list {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
-
             .category-grid .video-card {
                 flex: 0 0 180px;
             }
-
             .filter-container {
                 gap: 0.5rem;
             }
-
             .filter-chip {
                 padding: 0.5rem 1rem;
                 font-size: 0.875rem;
             }
-
             .filter-dropdown-content {
                 width: 250px;
                 max-height: 350px;
@@ -475,7 +594,6 @@
         </div>
         <button class="alert-close" onclick="closeAlert('alert-1')">&times;</button>
     </div>
-
     <!-- THÔNG BÁO 2 -->
     <div id="alert-2" class="alert-toast">
         <svg class="alert-icon" fill="currentColor" viewBox="0 0 20 20">
@@ -488,16 +606,32 @@
         </div>
         <button class="alert-close" onclick="closeAlert('alert-2')">&times;</button>
     </div>
-
-
-     
-
-
+    
     <div class="container mx-auto px-4 py-4">
         <header class="mb-4">
             <a class='text-3xl font-bold text-white' href='/'>Qủy</a>
         </header>
-
+        
+        <!-- BANNER PHIM NỔI BẬT -->
+        <div id="banner-container" class="banner-container">
+            <!-- Nội dung banner sẽ được thêm bằng JavaScript -->
+            <div class="banner-controls">
+                <button class="banner-control prev-banner">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                </button>
+                <button class="banner-control next-banner">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="banner-indicators" id="banner-indicators">
+                <!-- Indicators sẽ được thêm bằng JavaScript -->
+            </div>
+        </div>
+        
         <div class="relative">
             <div id="filter-container" class="filter-container flex z-20">
                 <input type="text" id="search-input" class="search-input" placeholder="Tìm kiếm phim...">
@@ -512,26 +646,22 @@
                 <a href="https://discord.gg/uqNA78fs9G" target="_blank" class="filter-btn bg-purple-600 hover:bg-purple-700 text-white">Discord</a>
             </div>
         </div>
-
         <div id="video-list-section" class="w-full">
             <div id="category-sections"></div>
             <div id="video-list"></div>
             <div id="pagination" class="pagination"></div>
         </div>
     </div>
-
     <script>
         // Hiển thị thông báo khi tải trang
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('alert-1').classList.add('show');
             }, 500);
-
             setTimeout(() => {
                 document.getElementById('alert-2').classList.add('show');
             }, 1000);
         });
-
         // Hàm đóng thông báo
         function closeAlert(id) {
             const alert = document.getElementById(id);
@@ -541,16 +671,19 @@
                 alert.style.display = 'none';
             }, 600);
         }
-
         let videos = [];
         const videosPerPage = 20;
         let currentPage = 1;
         let currentFilter = 'all';
-
+        
+        // Biến cho banner phim nổi bật
+        let featuredMovies = [];
+        let currentBannerIndex = 0;
+        let bannerInterval;
+        
         function getVideoTitle(video) {
             return video.TieuDe && video.TieuDe.trim() !== '' ? video.TieuDe : extractTitleFromUrl(video.tap?.[0]?.video) || 'Video không có tiêu đề';
         }
-
         function extractTitleFromUrl(url) {
             if (!url) return null;
             try {
@@ -568,7 +701,6 @@
                 return null;
             }
         }
-
         function createVideoCard(vid, index) {
             const videoCard = document.createElement("div");
             videoCard.className = "video-card";
@@ -576,7 +708,6 @@
             const thumbnail = vid.anh || 'image2-fotor-20250813113121.png';
             const categories = Array.isArray(vid.boloc) ? vid.boloc.join(", ") : 'Không có thể loại';
             const videoId = vid.tap?.[0]?.video || '';
-
             videoCard.innerHTML = `
                 <div class="overflow-hidden">
                     <img src="${thumbnail}" alt="${title}" class="w-full object-cover" onerror="this.src='image2-fotor-20250813113121.png'">
@@ -586,7 +717,6 @@
                     <p class="text-xs text-gray-400 mt-1">${categories}</p>
                 </div>
             `;
-
             videoCard.addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -594,21 +724,16 @@
                     window.location.href = `watch.html?id=${encodeURIComponent(videoId)}&title=${encodeURIComponent(title)}`;
                 }
             });
-
             return videoCard;
         }
-
         function displayCategorySection(category, filteredVideos) {
             const categorySection = document.createElement("div");
             categorySection.className = "category-section";
-
             const header = document.createElement("div");
             header.className = "category-header";
-
             const h2 = document.createElement("h2");
             h2.textContent = category;
             header.appendChild(h2);
-
             const viewAllBtn = document.createElement("button");
             viewAllBtn.className = "view-all-btn";
             viewAllBtn.textContent = "Xem tất cả";
@@ -616,25 +741,19 @@
                 selectFilter(category);
             });
             header.appendChild(viewAllBtn);
-
             categorySection.appendChild(header);
-
             const categoryGrid = document.createElement("div");
             categoryGrid.className = "category-grid";
-
             filteredVideos.slice(0, 10).forEach((vid, index) => {
                 const videoCard = createVideoCard(vid, index);
                 categoryGrid.appendChild(videoCard);
             });
-
             categorySection.appendChild(categoryGrid);
             return categorySection;
         }
-
         function generateFilterChips(categories) {
             const chipsContainer = document.getElementById("filter-chips");
             chipsContainer.innerHTML = '';
-
             categories.forEach(category => {
                 const chip = document.createElement("button");
                 chip.className = `filter-chip ${category === 'all' ? 'active' : ''}`;
@@ -651,7 +770,6 @@
                 });
                 chipsContainer.appendChild(chip);
             });
-
             const filterSearch = document.getElementById("filter-search");
             filterSearch.addEventListener("input", (e) => {
                 const searchQuery = e.target.value.toLowerCase();
@@ -662,7 +780,6 @@
                 });
             });
         }
-
         function selectFilter(category) {
             currentFilter = category;
             document.querySelectorAll(".filter-chip").forEach(chip => chip.classList.remove("active"));
@@ -673,26 +790,21 @@
             currentPage = 1;
             displayVideos(category, currentPage, document.getElementById("search-input").value);
         }
-
         function displayVideos(filter = "all", page = 1, searchQuery = "") {
             const videoList = document.getElementById("video-list");
             const categorySections = document.getElementById("category-sections");
             const pagination = document.getElementById("pagination");
             videoList.innerHTML = '<p class="text-gray-400 text-center py-4">Đang tải video...</p>';
             categorySections.innerHTML = '';
-
             let filteredVideos = filter === "all"
                 ? [...videos]
                 : videos.filter(v => v.boloc && Array.isArray(v.boloc) && v.boloc.includes(filter));
-
             if (searchQuery) {
                 filteredVideos = filteredVideos.filter(v =>
                     getVideoTitle(v).toLowerCase().includes(searchQuery.toLowerCase())
                 );
             }
-
             filteredVideos = filteredVideos.reverse();
-
             if (filteredVideos.length === 0) {
                 videoList.innerHTML = `
                     <div class="col-span-full text-center py-10">
@@ -704,7 +816,6 @@
                 }
                 return;
             }
-
             if (filter === "all" && !searchQuery) {
                 const categories = [...new Set(videos.flatMap(v => v.boloc || []))].sort();
                 categories.forEach(category => {
@@ -720,23 +831,18 @@
                 const startIndex = (page - 1) * videosPerPage;
                 const endIndex = page * videosPerPage;
                 const videosToShow = filteredVideos.slice(startIndex, endIndex);
-
                 videosToShow.forEach((vid, index) => {
                     const videoCard = createVideoCard(vid, index);
                     videoList.appendChild(videoCard);
                 });
-
                 updatePagination(filteredVideos.length, page);
             }
         }
-
         function updatePagination(totalVideos, currentPage) {
             const pagination = document.getElementById("pagination");
             pagination.innerHTML = "";
             const totalPages = Math.ceil(totalVideos / videosPerPage);
-
             if (totalPages === 0) return;
-
             const createPageButton = (page, text, disabled = false) => {
                 const btn = document.createElement("button");
                 btn.className = `pagination-btn ${page === currentPage ? 'active' : ''}`;
@@ -752,52 +858,204 @@
                 }
                 pagination.appendChild(btn);
             };
-
             const maxPagesToShow = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
             let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
-
             if (endPage - startPage + 1 < maxPagesToShow) {
                 startPage = Math.max(1, endPage - maxPagesToShow + 1);
             }
-
             if (currentPage > 1) {
                 createPageButton(currentPage - 1, "Trước");
             }
-
             for (let i = startPage; i <= endPage; i++) {
                 createPageButton(i, i);
             }
-
             if (currentPage < totalPages) {
                 createPageButton(currentPage + 1, "Sau");
             }
         }
-
+        
+        // ========== BANNER PHIM NỔI BẬT ==========
+        function loadFeaturedMovies() {
+            fetch("NoiBat.json")
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    featuredMovies = data.filter(movie => 
+                        movie.tap && 
+                        Array.isArray(movie.tap) && 
+                        movie.tap.length > 0 && 
+                        movie.tap[0].video && 
+                        movie.anh
+                    );
+                    createBannerSlides();
+                    startBannerRotation();
+                })
+                .catch(error => {
+                    console.error("Lỗi tải phim nổi bật:", error);
+                    // Nếu không tải được NoiBat.json, sử dụng một số phim từ phim.json
+                    featuredMovies = videos
+                        .filter(v => v.anh && v.tap && v.tap[0] && v.tap[0].video)
+                        .slice(0, 5);
+                    if (featuredMovies.length > 0) {
+                        createBannerSlides();
+                        startBannerRotation();
+                    }
+                });
+        }
+        
+        function createBannerSlides() {
+            const bannerContainer = document.getElementById("banner-container");
+            const indicatorsContainer = document.getElementById("banner-indicators");
+            
+            // Xóa nội dung cũ
+            const existingSlides = bannerContainer.querySelectorAll('.banner-slide');
+            existingSlides.forEach(slide => slide.remove());
+            
+            // Tạo slides mới
+            featuredMovies.forEach((movie, index) => {
+                const slide = document.createElement("div");
+                slide.className = `banner-slide ${index === 0 ? 'active' : ''}`;
+                slide.dataset.index = index;
+                
+                const title = getVideoTitle(movie);
+                const description = movie.moTa || "";
+                const image = movie.anh;
+                const videoId = movie.tap[0].video;
+                
+                slide.innerHTML = `
+                    <img src="${image}" alt="${title}" class="banner-image" onerror="this.src='image2-fotor-20250813113121.png'">
+                    <div class="banner-overlay"></div>
+                    <div class="banner-content">
+                        <h2 class="banner-title">${title}</h2>
+                        <p class="banner-description">${description}</p>
+                        <button class="banner-button watch-now-btn" data-video-id="${videoId}" data-title="${title}">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Xem ngay
+                        </button>
+                    </div>
+                `;
+                
+                bannerContainer.insertBefore(slide, bannerContainer.firstChild);
+                
+                // Tạo indicator
+                const indicator = document.createElement("div");
+                indicator.className = `banner-indicator ${index === 0 ? 'active' : ''}`;
+                indicator.dataset.index = index;
+                indicator.addEventListener("click", () => {
+                    showBannerSlide(index);
+                });
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // Thêm sự kiện cho nút xem ngay
+            document.querySelectorAll('.watch-now-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const videoId = btn.dataset.videoId;
+                    const title = btn.dataset.title;
+                    if (videoId) {
+                        window.location.href = `watch.html?id=${encodeURIComponent(videoId)}&title=${encodeURIComponent(title)}`;
+                    }
+                });
+            });
+            
+            // Thêm sự kiện cho nút điều khiển
+            document.querySelector('.prev-banner').addEventListener('click', () => {
+                showPrevBanner();
+            });
+            
+            document.querySelector('.next-banner').addEventListener('click', () => {
+                showNextBanner();
+            });
+            
+            // Thêm sự kiện touch cho mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            bannerContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            bannerContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left - next banner
+                    showNextBanner();
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right - prev banner
+                    showPrevBanner();
+                }
+            }
+        }
+        
+        function showBannerSlide(index) {
+            // Ẩn tất cả slides
+            document.querySelectorAll('.banner-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Hiển thị slide được chọn
+            document.querySelector(`.banner-slide[data-index="${index}"]`).classList.add('active');
+            
+            // Cập nhật indicators
+            document.querySelectorAll('.banner-indicator').forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            document.querySelector(`.banner-indicator[data-index="${index}"]`).classList.add('active');
+            
+            currentBannerIndex = index;
+            
+            // Reset timer
+            clearInterval(bannerInterval);
+            startBannerRotation();
+        }
+        
+        function showNextBanner() {
+            const nextIndex = (currentBannerIndex + 1) % featuredMovies.length;
+            showBannerSlide(nextIndex);
+        }
+        
+        function showPrevBanner() {
+            const prevIndex = (currentBannerIndex - 1 + featuredMovies.length) % featuredMovies.length;
+            showBannerSlide(prevIndex);
+        }
+        
+        function startBannerRotation() {
+            bannerInterval = setInterval(() => {
+                showNextBanner();
+            }, 5000); // Chuyển slide mỗi 5 giây
+        }
+        
         document.addEventListener("DOMContentLoaded", () => {
             const urlParams = new URLSearchParams(window.location.search);
             const filter = urlParams.get('filter') || 'all';
             const search = urlParams.get('search') || '';
             document.getElementById("search-input").value = search;
-
             const filterBtn = document.querySelector(".filter-btn");
             const filterDropdownContent = document.getElementById("filter-dropdown-content");
             const closeDropdownBtn = document.querySelector(".close-dropdown-btn");
-
             filterBtn.addEventListener("click", () => {
                 filterDropdownContent.classList.toggle("show");
             });
-
             closeDropdownBtn.addEventListener("click", () => {
                 filterDropdownContent.classList.remove("show");
             });
-
             document.addEventListener("click", (e) => {
                 if (!e.target.closest(".filter-dropdown") && !e.target.closest(".filter-dropdown-content")) {
                     filterDropdownContent.classList.remove("show");
                 }
             });
-
             fetch("phim.json")
                 .then(response => {
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -813,18 +1071,17 @@
                         `;
                         return;
                     }
-
                     const categories = ['all', ...new Set(videos.flatMap(v => v.boloc || []))].sort();
                     generateFilterChips(categories);
-
                     selectFilter(filter);
-
                     document.getElementById("search-input").addEventListener("input", (e) => {
                         currentPage = 1;
                         displayVideos(currentFilter, currentPage, e.target.value);
                     });
-
                     displayVideos(filter, 1, search);
+                    
+                    // Tải banner phim nổi bật sau khi đã tải xong phim.json
+                    loadFeaturedMovies();
                 })
                 .catch(error => {
                     console.error("Lỗi tải danh sách video:", error);
